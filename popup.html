@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+
+    <script src="js/mrz-worker.bundle-min-wrapped.js"></script>
+    <script src="js/demo.bundle-min.js"></script>
+    <style>
+      /* Add your CSS styles here */
+    </style>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="input">
+        <input type="file" id="photo" name="photo" accept="image/png, image/jpeg"/>
+      </div>
+      <div id="parsed"></div>
+      <div id="detected"></div>
+      <button id="autofill">Autofill</button>
+    </div>
+    
+    <script>
+      document.querySelector('#autofill').addEventListener('click', () => {
+        chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+          const activeTab = tabs[0];
+          chrome.tabs.sendMessage(activeTab.id, {
+            action: 'autofill',
+            data: {
+              // Add the extracted information from scanning the passport here
+              applicant_surname: 'Doe',
+              applicant_givenname: 'John',
+              // ...
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
