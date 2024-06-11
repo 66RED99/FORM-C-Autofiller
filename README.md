@@ -29,5 +29,5 @@ This project is a Chrome extension developed from February 2023 to April 2023. I
 - **Duration**: February 2023 – April 2023
 - **Roles**: Extension Development, OCR Integration
 
-For more information, visit the [project repository](link).
+
 
